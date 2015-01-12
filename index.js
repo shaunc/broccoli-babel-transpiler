@@ -22,6 +22,9 @@ SixToFive.prototype.processString = function (string, relativePath) {
   var opts = this.copyOptions();
 
   opts.filename = opts.sourceMapName = opts.sourceFileName = relativePath;
+  var blacklist = opts.blacklist  || [];
+
+  opts.blacklist = blacklist.concat(['modules']);
 
   return transpiler.transform(string, opts).code;
 };
